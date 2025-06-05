@@ -1,8 +1,21 @@
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 const Slider = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   const slides = [
     {
       image: "/images/SamsungS25.jpg",
@@ -27,13 +40,16 @@ const Slider = () => {
   ];
 
   return (
-    <div className="relative">
+    <div className="relative" style={{ touchAction: "manipulation" }}>
       <Carousel
         showThumbs={false}
         autoPlay
         infiniteLoop
         showStatus={false}
         interval={3000}
+        swipeable={!isMobile}
+        emulateTouch={!isMobile}
+        swipeScrollTolerance={30}
         renderArrowPrev={(onClickHandler, hasPrev) =>
           hasPrev && (
             <button
@@ -72,11 +88,15 @@ const Slider = () => {
         }}
       >
         {slides.map((slide, index) => (
-          <div key={index} className="relative h-[100vh] w-full">
+          <div
+            key={index}
+            className="relative h-[80vh] lg:h-[100vh] w-full select-none"
+          >
             <img
               src={slide.image}
               alt={slide.title}
               className="object-cover w-full h-full"
+              draggable={false}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-center items-center px-6 text-white text-center">
               <motion.h2

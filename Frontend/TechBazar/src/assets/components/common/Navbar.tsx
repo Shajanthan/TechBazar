@@ -24,9 +24,13 @@ const Navbar = () => {
 
   return (
     <div
-      className={`p-4 fixed top-0 w-full transition-colors duration-500 flex justify-between items-center z-50 text-white ${
-        isScrolled ? "bg-black " : "bg-transparent"
-      }`}
+      className={`p-4 fixed top-0 w-full  flex justify-between items-center z-50 text-white ${
+        isMenuOpen
+          ? "bg-black"
+          : isScrolled
+          ? "bg-black transition-all duration-500"
+          : "bg-transparent"
+      } `}
     >
       <div className="font-bold text-xl cursor-pointer">
         Tech<span className="text-red-500">Bazar</span>
