@@ -24,8 +24,8 @@ const Navbar = () => {
 
   return (
     <div
-      className={`p-4 fixed top-0 w-full transition-colors duration-500 flex justify-between items-center z-50 ${
-        isScrolled ? "bg-black text-white" : "bg-transparent text-black"
+      className={`p-4 fixed top-0 w-full transition-colors duration-500 flex justify-between items-center z-50 text-white ${
+        isScrolled ? "bg-black " : "bg-transparent"
       }`}
     >
       <div className="font-bold text-xl cursor-pointer">
@@ -87,11 +87,7 @@ const Navbar = () => {
           className={`absolute top-14 left-0 w-full bg-black text-white flex flex-col items-center gap-3 py-2 transition-all duration-500 z-40 md:hidden`}
         >
           {menuItems.map((item) => (
-            <li
-              key={item}
-              className="relative group text-lg"
-              onClick={() => setIsMenuOpen(false)}
-            >
+            <li key={item} className="relative group text-lg">
               <span className="hover:text-red-500 transition-all duration-300">
                 {item}
               </span>
