@@ -1,9 +1,12 @@
+import Footer from "../components/common/Footer";
 import Navbar from "../components/common/Navbar";
 
 const HomePage = () => {
   return (
-    <div className="h-[200vh]">
+    <div className="">
       <Navbar />
+      <div className="h-[100vh]"></div>
+      <Footer />
     </div>
   );
 };
