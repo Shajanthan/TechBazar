@@ -24,8 +24,8 @@ const Navbar = () => {
 
   return (
     <div
-      className={`p-4 fixed top-0 w-full transition-colors duration-500 flex justify-between items-center z-50 ${
-        isScrolled ? "bg-black text-white" : "bg-transparent text-black"
+      className={`p-4 fixed top-0 w-full transition-colors duration-500 flex justify-between items-center z-50 text-white ${
+        isScrolled ? "bg-black " : "bg-transparent"
       }`}
     >
       <div className="font-bold text-xl cursor-pointer">
