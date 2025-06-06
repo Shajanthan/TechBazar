@@ -1,9 +1,5 @@
 import { BsFillTelephoneFill } from "react-icons/bs";
-import {
-  FaFacebook,
-  FaInstagramSquare,
-  FaLongArrowAltRight,
-} from "react-icons/fa";
+import { FaFacebook, FaInstagramSquare } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { ImLocation2 } from "react-icons/im";
 import { IoIosMail } from "react-icons/io";
@@ -11,7 +7,7 @@ import { IoIosMail } from "react-icons/io";
 const Footer = () => {
   return (
     <div className="">
-      <div className="w-ful bg-black grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 text-white p-5 cursor-pointer">
+      <div className="w-ful bg-black/90 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 text-white p-5 cursor-pointer">
         <div className="p-2 lg:m-auto">
           <div className="text-2xl font-bold py-3">
             Tech<span className="text-red-500">Bazar</span>
@@ -35,15 +31,12 @@ const Footer = () => {
           </div>
           <div className="list-none">
             <li className="py-1 flex gap-2 items-center hover:text-red-500 transition-colors duration-500">
-              <FaLongArrowAltRight size={20} />
               Home
             </li>
             <li className="py-1 flex gap-2 items-center hover:text-red-500 transition-colors duration-500">
-              <FaLongArrowAltRight size={20} />
               Products
             </li>
             <li className="py-1 flex gap-2 items-center hover:text-red-500 transition-colors duration-500">
-              <FaLongArrowAltRight size={20} />
               Contact Us
             </li>
           </div>
@@ -54,15 +47,12 @@ const Footer = () => {
           </div>
           <div className="list-none">
             <li className="py-1 flex gap-2 items-center hover:text-red-500 transition-colors duration-500">
-              <FaLongArrowAltRight size={20} />
               Mobile Phone
             </li>
             <li className="py-1 flex gap-2 items-center hover:text-red-500 transition-colors duration-500">
-              <FaLongArrowAltRight size={20} />
               Mobile Accessories
             </li>
             <li className="py-1 flex gap-2 items-center hover:text-red-500 transition-colors duration-500">
-              <FaLongArrowAltRight size={20} />
               Speakers
             </li>
           </div>
@@ -72,7 +62,7 @@ const Footer = () => {
           <div className="text-2xl font-bold py-3">
             Follow<span className="text-red-500">Us</span>
           </div>
-          <div className="text-lg">
+          <div className="text-lg flex gap-3 lg:block">
             <div className="py-1">
               <FaFacebook
                 size={24}
@@ -94,12 +84,11 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="text-center py-2 bg-black text-sm text-gray-300 w-full">
+      <div className="text-center py-2 bg-black/90 text-sm text-gray-300 w-full">
         &copy; {new Date().getFullYear()}{" "}
         <span className="font-semibold text-white">
-          Tech<span className="text-red-500">Bazar</span>
+          Tech<span className="text-red-500">Bazar</span> All rights reserved
         </span>
-        All rights reserved
       </div>
     </div>
   );
