@@ -1,6 +1,6 @@
-import AllMobiles from "../components/AllMobiles";
 import Footer from "../components/common/Footer";
 import Navbar from "../components/common/Navbar";
+import Products from "../components/Products";
 import Slider from "../components/Slider";
 
 const HomePage = () => {
@@ -8,7 +8,10 @@ const HomePage = () => {
     <div className="">
       <Navbar />
       <Slider />
-      <AllMobiles />
+      <div className="container mx-auto">
+        <Products />
+      </div>
+
       <Footer />
     </div>
   );
