@@ -48,6 +48,7 @@ const Slider = () => {
         infiniteLoop
         showStatus={false}
         interval={3000}
+        swipeable={false}
         renderArrowPrev={(onClickHandler, hasPrev) =>
           hasPrev && (
             <button
