@@ -46,13 +46,13 @@ const MobileCard: React.FC<MobileCardProps> = ({ mobile }) => {
       <div className="p-2 flex items-center justify-between">
         <div className="">
           <div className="text-gray-400 text-xs md:text-sm line-through decoration-red-500 decoration-2">
-            $1000
+            $1299
           </div>
           <div className="font-semibold md:text-xl">${mobile.price}</div>
         </div>
         <div className="">
           <button className=" bg-black p-1 md:p-2 rounded-md text-white ">
-            <IoIosCart size={24} />
+            <IoIosCart size={22} />
           </button>
         </div>
       </div>
