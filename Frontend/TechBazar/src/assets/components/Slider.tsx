@@ -1,21 +1,22 @@
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
+// import { useEffect, useState } from "react";
 
 const Slider = () => {
-  const [isMobile, setIsMobile] = useState(false);
+  // const [isMobile, setIsMobile] = useState(false);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     setIsMobile(window.innerWidth <= 768);
+  //   };
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
+  //   handleResize();
+  //   window.addEventListener("resize", handleResize);
 
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  //   return () => window.removeEventListener("resize", handleResize);
+  // }, []);
   const slides = [
     {
       image: "/images/SamsungS25.jpg",
@@ -40,23 +41,20 @@ const Slider = () => {
   ];
 
   return (
-    <div className="relative" style={{ touchAction: "manipulation" }}>
+    <div className="relative">
       <Carousel
         showThumbs={false}
         autoPlay
         infiniteLoop
         showStatus={false}
         interval={3000}
-        swipeable={!isMobile}
-        emulateTouch={!isMobile}
-        swipeScrollTolerance={30}
         renderArrowPrev={(onClickHandler, hasPrev) =>
           hasPrev && (
             <button
               onClick={onClickHandler}
               className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 text-white text-3xl"
             >
-              ‹
+              <MdNavigateBefore size={20} />
             </button>
           )
         }
@@ -66,7 +64,7 @@ const Slider = () => {
               onClick={onClickHandler}
               className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 text-white text-3xl"
             >
-              ›
+              <MdNavigateNext size={20} />
             </button>
           )
         }
