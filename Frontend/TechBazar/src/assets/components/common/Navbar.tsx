@@ -19,6 +19,10 @@ const Navbar = () => {
     navigate("/Login");
   };
 
+  const handleCartClick = () => {
+    navigate("/Cart");
+  };
+
   const menuItems = ["Home", "Products", "Contact Us"];
 
   useEffect(() => {
@@ -54,7 +58,7 @@ const Navbar = () => {
             <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-red-500 transition-all duration-500 group-hover:w-full"></span>
           </li>
         ))}
-        <li className="relative">
+        <li className="relative" onClick={handleCartClick}>
           <IoIosCart size={24} />
           {cartCount > 0 && (
             <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
@@ -115,10 +119,7 @@ const Navbar = () => {
           className={`absolute p-3 top-14 left-0 w-full bg-black text-white flex flex-col items-center transition-all duration-500 z-40 md:hidden`}
         >
           {menuItems.map((item) => (
-            <li
-              key={item}
-              className="relative group text-lg border-b border-gray-200 p-2 w-full"
-            >
+            <li key={item} className="relative group text-lg p-2 w-full">
               <span className="hover:text-red-500 transition-all duration-300">
                 {item}
               </span>
@@ -127,7 +128,7 @@ const Navbar = () => {
           ))}
 
           {/* Cart with badge in mobile */}
-          <li className="border-b border-gray-200 p-2 w-full flex justify-between">
+          <li className="p-2 w-full flex justify-between">
             <span className="">Cart</span>
             {cartCount > 0 && (
               <span className="bg-red-500 rounded-full text-center text-white text-xs px-2 flex items-center justify-center-full">
@@ -137,13 +138,13 @@ const Navbar = () => {
           </li>
           {user ? (
             <>
-              <li className="border-b border-gray-200 p-2 w-full">Profile</li>
-              <li className="border-b border-gray-200 p-2 w-full">Logout</li>
+              <li className="p-2 w-full">Profile</li>
+              <li className="p-2 w-full">Logout</li>
             </>
           ) : (
             <>
               <li
-                className="border-b border-gray-200 p-2 w-full"
+                className=" border-gray-200 p-2 w-full"
                 onClick={handleLoginClickClick}
               >
                 Login
