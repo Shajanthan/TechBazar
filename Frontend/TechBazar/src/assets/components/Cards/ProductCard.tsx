@@ -71,7 +71,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           </button>
         </div>
       </div>
-      <button className="capitalize bg-black text-white rounded p-2 hover:bg-red-500 transition-colors duration-500 ">
+      <button className="capitalize bg-black text-white rounded p-2 group-hover:bg-red-500 transition-colors duration-500 ">
         more info
       </button>
     </div>

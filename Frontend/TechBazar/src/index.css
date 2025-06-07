@@ -3,3 +3,43 @@
 .font-comfortaa {
   font-family: "Comfortaa", sans-serif;
 }
+
+/* Scrollbar */
+.scrollbar-custom::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background-color: #da3b3b;
+  border-radius: 4px;
+  border: 2px solid #f1f1f1;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb:hover {
+  background: #000000;
+}
+
+/* Scrollbar black */
+.scrollbar-custom-black::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+.scrollbar-custom-black::-webkit-scrollbar-track {
+  background: black;
+}
+
+.scrollbar-custom-black::-webkit-scrollbar-thumb {
+  background-color: #da3b3b;
+  border-radius: 4px;
+  border: 2px solid #f1f1f1;
+}
+
+.scrollbar-custom-black::-webkit-scrollbar-thumb:hover {
+  background: #000000;
+}
