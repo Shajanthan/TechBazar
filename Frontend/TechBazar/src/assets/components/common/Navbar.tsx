@@ -23,7 +23,11 @@ const Navbar = () => {
     navigate("/Cart");
   };
 
-  const menuItems = ["Home", "Products", "Contact Us"];
+  const menuItems = [
+    { label: "Home", path: "/" },
+    { label: "Products", path: "/Products" },
+    { label: "Contact Us", path: "/Contact" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,6 +46,7 @@ const Navbar = () => {
           : isScrolled
           ? "bg-black transition-all duration-500"
           : "bg-transparent"
+        // " bg-black"
       } `}
     >
       <div className="font-bold text-xl cursor-pointer">
@@ -51,13 +56,19 @@ const Navbar = () => {
       <ul className="hidden md:flex list-none items-center gap-6 cursor-pointer ">
         {menuItems.map((item) => (
           <li
-            key={item}
+            key={item.label}
             className="relative group hover:text-red-500 font-bold"
           >
-            <span className=" transition-all duration-500">{item}</span>
+            <span
+              className="transition-all duration-500"
+              onClick={() => navigate(item.path, { replace: true })}
+            >
+              {item.label}
+            </span>
             <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-red-500 transition-all duration-500 group-hover:w-full"></span>
           </li>
         ))}
+
         <li className="relative" onClick={handleCartClick}>
           <IoIosCart size={24} />
           {cartCount > 0 && (
@@ -119,16 +130,28 @@ const Navbar = () => {
           className={`absolute p-3 top-14 left-0 w-full bg-black text-white flex flex-col items-center transition-all duration-500 z-40 md:hidden`}
         >
           {menuItems.map((item) => (
-            <li key={item} className="relative group text-lg p-2 w-full">
-              <span className="hover:text-red-500 transition-all duration-300">
-                {item}
+            <li key={item.label} className="relative group text-lg p-2 w-full">
+              <span
+                className="hover:text-red-500 transition-all duration-300"
+                onClick={() => {
+                  navigate(item.path, { replace: true });
+                  setIsMenuOpen(false);
+                }}
+              >
+                {item.label}
               </span>
               <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-red-500 transition-all duration-300 group-hover:w-full"></span>
             </li>
           ))}
 
           {/* Cart with badge in mobile */}
-          <li className="p-2 w-full flex justify-between">
+          <li
+            className="p-2 w-full flex justify-between"
+            onClick={() => {
+              navigate("/Cart");
+              setIsMenuOpen(false);
+            }}
+          >
             <span className="">Cart</span>
             {cartCount > 0 && (
               <span className="bg-red-500 rounded-full text-center text-white text-xs px-2 flex items-center justify-center-full">
