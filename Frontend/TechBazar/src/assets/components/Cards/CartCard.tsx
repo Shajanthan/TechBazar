@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { FiMinus, FiPlus } from "react-icons/fi";
 import { MdDelete } from "react-icons/md";
 
 interface CartItem {
@@ -26,6 +27,48 @@ const dummyCartItems: CartItem[] = [
   },
   {
     id: 3,
+    name: "Gaming Mouse",
+    price: 1000,
+    image: "/images/Iphone16Pro.jpg",
+    quantity: 2,
+  },
+  {
+    id: 4,
+    name: "Wireless Headphones",
+    price: 1000,
+    image: "/images/Laptop.png",
+    quantity: 1,
+  },
+  {
+    id: 5,
+    name: "Gaming Mouse",
+    price: 1000,
+    image: "/images/Iphone16Pro.jpg",
+    quantity: 2,
+  },
+  {
+    id: 6,
+    name: "Gaming Mouse",
+    price: 1000,
+    image: "/images/Iphone16Pro.jpg",
+    quantity: 2,
+  },
+  {
+    id: 7,
+    name: "Wireless Headphones",
+    price: 1000,
+    image: "/images/Laptop.png",
+    quantity: 1,
+  },
+  {
+    id: 8,
+    name: "Gaming Mouse",
+    price: 1000,
+    image: "/images/Iphone16Pro.jpg",
+    quantity: 2,
+  },
+  {
+    id: 9,
     name: "Gaming Mouse",
     price: 1000,
     image: "/images/Iphone16Pro.jpg",
@@ -87,70 +130,94 @@ const CartCard: React.FC = () => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 gap-y-4">
       {/* Cart Items List */}
-      <div className="grid grid-cols-1 col-span-2 gap-2  w-full">
-        {cartItems.map((item) => (
-          <div
-            key={item.id}
-            className="flex justify-between items-center border border-gray-200 rounded "
-          >
-            <div className="flex items-center justify-center w-full p-2">
-              <img
-                src={item.image}
-                alt={item.name}
-                className="w-[80px] h-[80px] object-fit rounded"
-              />
-            </div>
-            <div className="w-full">
-              <div>
-                <h2 className="font-semibold">{item.name}</h2>
-                <p className="text-gray-500 text-sm">Rs {item.price}</p>
-              </div>
-            </div>
-            <div className="w-full justify-center">
-              <div className="flex justify-center items-center">
-                <button
-                  onClick={() => decreaseQty(item.id)}
-                  className="px-2 text-lg bg-gray-100 rounded border border-gray-300 hover:bg-black hover:text-white transition-all duration-500"
-                >
-                  −
-                </button>
-
-                <input
-                  type="number"
-                  min={1}
-                  value={item.quantity}
-                  onChange={(e) =>
-                    handleQtyChange(item.id, parseInt(e.target.value) || 1)
-                  }
-                  className="w-16 focus:outline-0 text-center border border-gray-300 rounded px-2 py-1 mx-2 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [-moz-appearance:textfield]"
-                />
-
-                <button
-                  onClick={() => increaseQty(item.id)}
-                  className="px-2 text-lg bg-gray-100 rounded border border-gray-300 hover:bg-black hover:text-white transition-all duration-500"
-                >
-                  +
-                </button>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-center w-full">
-              <div className="font-bold text-gray-700 w-full">
-                Rs {item.price * item.quantity}
-              </div>
-              <button
-                onClick={() => removeItem(item.id)}
-                className="text-sm flex justify-center items-center w-full text-black hover:text-red-500 transition-all duration-500"
-              >
-                <MdDelete size={24} />
-              </button>
-            </div>
+      <div className="grid grid-cols-1 col-span-2 gap-2 w-full">
+        {cartItems.length === 0 ? (
+          <div className="flex justify-center items-center w-full h-64 border border-gray-200 rounded bg-gray-50">
+            <p className="text-gray-500 text-lg font-medium">
+              No items in your cart.
+            </p>
           </div>
-        ))}
+        ) : (
+          <>
+            {" "}
+            <div className="grid-cols-2 lg:grid-cols-4 items-center lg:grid hidden">
+              <div className="flex items-center justify-center w-full p-2 text-center font-bold">
+                Image
+              </div>
+              <div className="w-full text-center font-bold">Description</div>
+              <div className="w-full justify-center col-span-1 text-center font-bold ">
+                Quantity
+              </div>
+              <div className="flex items-center justify-center w-full col-span-1 font-bold">
+                <div className="w-full text-center">Total</div>
+                <div className="w-full text-center"></div>
+              </div>
+            </div>
+            {cartItems.map((item) => (
+              <div
+                key={item.id}
+                className="grid grid-cols-2 lg:grid-cols-4 items-center border border-gray-200 rounded "
+              >
+                <div className="flex items-center justify-center w-full p-2">
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="w-[80px] h-[80px] object-fit rounded"
+                  />
+                </div>
+                <div className="w-full">
+                  <div>
+                    <h2 className="font-semibold">{item.name}</h2>
+                    <p className="text-gray-500 text-sm">Rs {item.price}</p>
+                  </div>
+                </div>
+                <div className="w-full justify-center col-span-2 lg:col-span-1 py-2 lg:py-0">
+                  <div className="flex justify-center items-center">
+                    <button
+                      onClick={() => decreaseQty(item.id)}
+                      className="p-2 text-lg bg-gray-100 rounded border border-gray-300 hover:bg-black hover:text-white transition-all duration-500"
+                    >
+                      <FiMinus size={16} />
+                    </button>
+
+                    <input
+                      type="number"
+                      min={1}
+                      value={item.quantity}
+                      onChange={(e) =>
+                        handleQtyChange(item.id, parseInt(e.target.value) || 1)
+                      }
+                      className="w-16 focus:outline-0 text-center border border-gray-300 rounded px-2 py-1 mx-2 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [-moz-appearance:textfield]"
+                    />
+
+                    <button
+                      onClick={() => increaseQty(item.id)}
+                      className="p-2 text-lg bg-gray-100 rounded border border-gray-300 hover:bg-black hover:text-white transition-all duration-500"
+                    >
+                      <FiPlus size={16} />
+                    </button>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-center w-full col-span-2 lg:col-span-1 py-2 lg:py-0">
+                  <div className="font-bold text-gray-700 w-full text-center">
+                    Rs {item.price * item.quantity}
+                  </div>
+                  <button
+                    onClick={() => removeItem(item.id)}
+                    className="text-sm flex justify-center items-center w-full text-black hover:text-red-500 transition-all duration-500"
+                  >
+                    <MdDelete size={24} />
+                  </button>
+                </div>
+              </div>
+            ))}
+          </>
+        )}
       </div>
 
       {/* Summary Section */}
-      <div className="w-full flex justify-center items-center">
+      <div className="w-full flex justify-center items-start">
         <div className="w-sm border border-gray-300 shadow-md rounded-md bg-gray-50 p-4">
           <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
           <div className="flex justify-between mb-2">
