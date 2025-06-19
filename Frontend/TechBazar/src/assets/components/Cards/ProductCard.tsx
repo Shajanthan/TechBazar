@@ -1,20 +1,14 @@
 import { useState } from "react";
 import { IoIosCart, IoMdHeartEmpty } from "react-icons/io";
 import { IoHeart, IoStarOutline, IoStarSharp } from "react-icons/io5";
-
-interface Product {
-  name: string;
-  image: string;
-  price: string;
-  rating: number;
-  warranty: boolean;
-}
+import type { Product } from "../../../types/Product";
 
 type ProductCardProps = {
   product: Product;
+  onMoreInfo: (product: Product) => void;
 };
 
-const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ product, onMoreInfo }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   return (
     <div className="border border-gray-300 rounded-md p-3 relative flex flex-col h-full group">
@@ -71,7 +65,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           </button>
         </div>
       </div>
-      <button className="capitalize bg-black text-white rounded p-2 group-hover:bg-red-500 transition-colors duration-500 ">
+      <button
+        className="capitalize bg-black text-white rounded p-2 group-hover:bg-red-500 transition-colors duration-500"
+        onClick={() => onMoreInfo(product)}
+      >
         more info
       </button>
     </div>

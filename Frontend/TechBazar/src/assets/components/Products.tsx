@@ -1,4 +1,7 @@
+import { useEffect, useState } from "react";
 import ProductCard from "./Cards/ProductCard";
+import ProductModal from "./Modal/ProductModal";
+import type { Product } from "../../types/Product";
 
 const Products = () => {
   const products = [
@@ -286,10 +289,34 @@ const Products = () => {
     },
   ];
 
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+
+  const handleMoreInfo = (product: Product) => {
+    setSelectedProduct(product);
+  };
+
+  const closeModal = () => setSelectedProduct(null);
+
+  useEffect(() => {
+    if (selectedProduct) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+    };
+  }, [selectedProduct]);
+
   return (
     <div className="p-2 lg:p-3">
       {products.map(({ category, products }) => (
-        <div key={category} className="mb-6">
+        <div
+          key={category}
+          id={category.toLowerCase()}
+          className="mb-6 scroll-mt-24"
+        >
           <div className="uppercase font-bold text-xl pt-3 flex justify-between">
             <span className="">{category}</span>
             <span className="hidden lg:block capitalize hover:text-red-500 transition-colors duration-100 cursor-pointer">
@@ -299,11 +326,16 @@ const Products = () => {
           <div className="w-full border-b-2 border-red-500 mb-2"></div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 py-2">
             {products.map((product, index) => (
-              <ProductCard key={index} product={product} />
+              <ProductCard
+                key={index}
+                product={product}
+                onMoreInfo={handleMoreInfo}
+              />
             ))}
           </div>
         </div>
       ))}
+      <ProductModal product={selectedProduct} onClose={closeModal} />
     </div>
   );
 };
